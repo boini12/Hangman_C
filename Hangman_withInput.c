@@ -11,7 +11,7 @@ void GameTitle(){
     printf("\n-----------------------");
 
 }
-
+//Selects one of the given names, that has to be guessed
 int SelectWord(){
     srand(time(NULL));
     int upper = 4;
@@ -19,7 +19,8 @@ int SelectWord(){
     int i = (rand() % (upper - lower + 1)) + lower;
     return i;
 }
-
+/* counts the length of the word
+    plus also spaces in between those words*/
 int WordLength(char *arr){
     int count = 0;
     char *pointer = arr;
@@ -28,7 +29,8 @@ int WordLength(char *arr){
     }
     return count;
 }
-
+/* Takes a word and turns every char of the word 
+    into a '-' */
 void HiddenWord(char *arr){
     printf("\n");
     char *ptr = arr;
@@ -53,7 +55,8 @@ void GuessingGameStart(){
     printf("\n-----------------------");
     printf("\n\n");
 }
-
+/* counts the same letters in a word
+    such as London - SameChar = 1*/
 int SameChars(char *arr, int length){
     int count = 0;
     //points to the first letter of the string
@@ -79,7 +82,9 @@ int SameChars(char *arr, int length){
     }
     return count;
 }
-
+/* Checks if the chosen letter is in the word or not and
+    then returns back an array that fills it self up slowly
+    if the letter was corret*/
 char * Guessing(char guess, char *arr, char *reArr){
     char *ptr = arr;
     //First letter should always be capital 
@@ -103,7 +108,8 @@ char * Guessing(char guess, char *arr, char *reArr){
     return reArr;
 
 }
-
+/* counts the number of underscores in the array of 
+    the Guessing function */
 int CountUnderscore(char *arr){
     char *ptr = arr;
     int count = 0;
@@ -134,7 +140,11 @@ void lost(){
     printf("\n-----------------------");
     printf("\n");
 }
-
+/* basically just a true or false function
+    if the guess was correct and the letter
+    does appear in the word then this function
+    will return a number with the value 1, else
+    with a value of 0 */
 int GoodGuess(char guess, char * arr){
     char *ptr = arr;
     int reVal = 0;
@@ -148,7 +158,9 @@ int GoodGuess(char guess, char * arr){
     }
     return reVal;
 }
-
+/* A function to make every word that will be input
+    by the user look essentially the same - that means e.g.
+    always capitalizing the word */
 char * EqualDesign(char *arr){
     char * ptr = arr;
     int i = 1;
@@ -235,6 +247,7 @@ void BuildTree(int life, char guess, char * arr){
             break;
         }  
 }
+/* Game if option: use random word is chosen */
 }
 void HangmanGame(){
    //allocating the memory for each word
@@ -307,6 +320,7 @@ void HangmanGame(){
   free(f);
   free(g);
 }
+/* Game if option: own word is chosen */
 void HangmanGameOwnWord(char * arr){
    GuessingGameStart();
    //Make every String have the same overall design
@@ -379,4 +393,5 @@ void main(){
     }else{
         printf("\nWrong input - Restart the Game!\n");
     }
+
 }
